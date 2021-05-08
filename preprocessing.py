@@ -4,7 +4,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, confusion_matrix
 from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
 from sklearn.preprocessing import StandardScaler
-
+import pickle
 import pandas as pd 
 import json
 import random
@@ -64,7 +64,6 @@ y_pred=clf.predict(X_test)
 
 #ACCURACY FOR LOGISTIC/RANDOM FORREST
 print("Accuracy for random forrest : ", accuracy_score(y_test, y_pred), "\ntime taken : ",  str(timeit.default_timer() - starttime)[:4], "s\n")
-
 y_pred = clf.predict(X_test)
 
 # NICE TABLE FOR SEEING TESTING RESULTS
@@ -84,10 +83,14 @@ print()
 #ACCURACY FOR ADABOOST
 # print('Accuracy for adaboost: %.3f (%.3f)' % (mean(n_scores), std(n_scores)), "\ntime taken : ", str(timeit.default_timer() - starttime)[:5], "s\n")
 
-#CODE FOR PRINTING INPUTS WITH OUTPUTS FOR DEBUGGING
+#CODE FOR PRINTING INPUTS WITH OUTPUTS F OR DEBUGGING
+
 for i in [random.randint(0, len(X_test_og)) for i in range(5)]:
     print(y_pred[i])
     ind = features_nd.tolist().index(X_test_og[i].tolist())
     print(data[ind].strip())
     print()
 
+
+with open('model.pkl', 'wb') as model_file:
+  pickle.dump(clf, model_file)

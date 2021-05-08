@@ -1,7 +1,7 @@
 #! /bin/sh
 
-# items=("covid icu" "hospital" "oxygen" "concentrator" "ambulance" "ventilator")
-items=("covid icu")
+items=("covid icu" "hospital" "oxygen" "concentrator" "ambulance" "ventilator")
+#items=("covid icu")
 
 # TODO Use no retweet, language translate, etc in twint
 
