@@ -11,9 +11,10 @@ vectorizer = CountVectorizer(analyzer="word",lowercase=False)
 scaler = StandardScaler()
 
 tweet = input("Enter input")
-vectorized = vectorizer.fit_transform(["hi",tweet]).toarray()
-_,X_test, _, _ = train_test_split(vectorized, vectorized, train_size=0.5)
-scaled = scaler.fit_transform(X_test)
+vectorized = vectorizer.fit_transform([tweet]).toarray()
+print("vecorized shape ", vectorized.shape)
+#_,X_test, _, _ = train_test_split(vectorized, vectorized, train_size=0.5)
+scaled = scaler.fit_transform(vectorized)
 
 prediction = mdl.predict(scaled)
 print(prediction)
