@@ -6,5 +6,5 @@ items=("covid icu" "hospital" "oxygen" "concentrator" "ambulance" "ventilator")
 
 for i in "${items[@]}"; do
     echo "$i"
-    ~/.local/bin/twint --filter-retweets --near Bangalore --since 2021-05-01 --search "$i" --json -o input.json >/dev/null
+    ~/.local/bin/twint --filter-retweets --near Bangalore --since 2021-05-01 --search "$i" --json -o ../input.json >/dev/null
 done

@@ -1,9 +1,7 @@
 from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.model_selection import train_test_split, RepeatedStratifiedKFold
-from sklearn.pipeline import make_pipeline
+from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 from imblearn.ensemble import BalancedRandomForestClassifier
-from sklearn.preprocessing import StandardScaler, FunctionTransformer
 import pickle as p
 import pandas as pd
 import json
@@ -13,7 +11,7 @@ import timeit
 
 data = []
 labels = []
-with open("text.json", "r+") as f:
+with open("data.json", "r+") as f:
     obj = json.load(f)
     for i in obj.keys():
         data.extend(obj[i])

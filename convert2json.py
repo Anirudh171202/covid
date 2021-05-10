@@ -1,33 +1,28 @@
 import json
 import csv
 import os
+from tqdm import tqdm
 
-json_obj = {}
-
-with open("text.json", "r") as f:
-    old = json.load(f)
-    for k, v in old.items():
-        json_obj[k] = set(v)
+data = {'need': set(), 'useless': set(), 'give': set()}
 
 
-
-for file in os.listdir('labelled'):
+for file in tqdm(os.listdir('labelled')):
+    print(file)
     with open(f'labelled/{file}', 'r') as f:
-        l=[]
         csv_reader = csv.reader(f, delimiter=',')
         next(csv_reader)
-        for classified,id,tweet in csv_reader:
+        for classified, id, tweet in tqdm(csv_reader):
             if classified.lower() == 'o':
-                json_obj['useless'].add(tweet)
+                data['useless'].add(tweet)
             elif classified.lower() == 'n':
-                json_obj['need'].add(tweet)
+                data['need'].add(tweet)
             elif classified.lower() == 'g':
-                json_obj['give'].add(tweet)
+                data['give'].add(tweet)
             else:
-                print('ignoring', id)
-                
-for k, v in json_obj.items():
-    json_obj[k] = list(v)
+                print('Ignoring:', id)
 
-with open ('text.json', 'w') as f:
-    json.dump(json_obj, f)
+for k, v in data.items():
+    data[k] = list(v)
+
+with open('data.json', 'w') as f:
+    json.dump(data, f)
