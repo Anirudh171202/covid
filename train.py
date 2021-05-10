@@ -9,6 +9,9 @@ import random
 import numpy as np
 import timeit
 
+random.seed(1234)
+np.random.seed(1234)
+
 data = []
 labels = []
 with open("data.json", "r+") as f:
